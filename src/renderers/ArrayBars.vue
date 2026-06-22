@@ -46,6 +46,6 @@ const colorOf = (i) => {
 }
 .val { font-weight: 600; }
 .idx { position: absolute; bottom: -20px; color: #94a3b8; font-size: 11px; }
-.legend { display: flex; gap: 14px; justify-content: center; padding: 10px; font-size: 12px; color: #475569; }
+.legend { display: flex; gap: 14px; justify-content: center; padding: 10px; font-size: 12px; color: var(--text-dim); }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; }
 </style>

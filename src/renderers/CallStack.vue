@@ -28,7 +28,7 @@ const reversed = computed(() => [...(props.state.frames || [])].reverse())
 
 <style scoped>
 .wrap { display: flex; flex-direction: column; height: 100%; width: 100%; padding: 20px; gap: 12px; }
-.result { font-weight: 700; font-size: 15px; color: #0f172a; }
+.result { font-weight: 700; font-size: 15px; color: var(--text); }
 .stack { display: flex; flex-direction: column; justify-content: flex-end; flex: 1; gap: 5px; }
 .top-label, .base { color: #94a3b8; font-size: 11px; text-align: center; }
 .frame {

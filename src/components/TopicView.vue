@@ -4,6 +4,7 @@ import { useStepPlayer } from '../composables/useStepPlayer.js'
 import CodePanel from './CodePanel.vue'
 import VizStage from './VizStage.vue'
 import StepController from './StepController.vue'
+import RichText from './RichText.vue'
 
 const props = defineProps({ topic: { type: Object, required: true } })
 
@@ -18,6 +19,7 @@ watch(
 
 const algo = computed(() => props.topic.algorithms[algoKey.value])
 const steps = computed(() => algo.value.build())
+const terms = computed(() => props.topic.terms || [])
 
 const player = useStepPlayer(steps)
 watch(steps, () => player.reset())
@@ -25,14 +27,34 @@ watch(steps, () => player.reset())
 
 <template>
   <section class="topic">
-    <header>
+    <!-- 도입: 초보자용 설명 -->
+    <div class="intro">
       <div class="title-row">
         <h2>{{ topic.title }}</h2>
-        <span class="cx">⏱ {{ topic.complexity.time }} · 🗂 {{ topic.complexity.space }}</span>
+        <span class="badge time">⏱ {{ topic.complexity.time }}</span>
+        <span class="badge space">🗂 {{ topic.complexity.space }}</span>
       </div>
-      <p class="concept">{{ topic.concept }}</p>
+
+      <p v-if="topic.plainDef" class="lead">{{ topic.plainDef }}</p>
+
+      <div class="cards">
+        <div v-if="topic.analogy" class="card">
+          <div class="card-t">💡 쉽게 말하면</div>
+          <p>{{ topic.analogy }}</p>
+        </div>
+        <div v-if="topic.why" class="card">
+          <div class="card-t">❓ 왜 쓰나요</div>
+          <p>{{ topic.why }}</p>
+        </div>
+      </div>
+
+      <p v-if="topic.concept" class="concept">
+        <RichText :text="topic.concept" :terms="terms" />
+      </p>
       <p class="rw">☕ Java 표준: {{ topic.realWorld }}</p>
+
       <div class="algos" v-if="algoKeys.length > 1">
+        <span class="algos-label">실행 예시</span>
         <button
           v-for="k in algoKeys"
           :key="k"
@@ -42,15 +64,16 @@ watch(steps, () => player.reset())
           {{ topic.algorithms[k].label }}
         </button>
       </div>
-    </header>
+    </div>
 
+    <!-- 좌측 코드 / 우측 시각화 -->
     <div class="split">
       <div class="left">
-        <div class="pane-label">Java 코드</div>
+        <div class="pane-label">Java 코드 <span class="dim">— 노란 줄이 지금 실행 중</span></div>
         <CodePanel class="grow" :code="algo.code" :activeLine="player.current.value.line" />
       </div>
       <div class="right">
-        <div class="pane-label">시각화</div>
+        <div class="pane-label">시각화 <span class="dim">— 코드가 실제로 하는 일</span></div>
         <VizStage class="grow" :rendererId="topic.rendererId" :state="player.current.value.state" />
       </div>
     </div>
@@ -67,25 +90,177 @@ watch(steps, () => player.reset())
       @seek="player.seek"
       @speed="player.setSpeed"
     />
+
+    <!-- 코테 포인트 -->
+    <div v-if="topic.coteTip" class="cote">
+      <div class="cote-t">🎯 코테 출제 포인트</div>
+      <p><RichText :text="topic.coteTip" :terms="terms" /></p>
+    </div>
   </section>
 </template>
 
 <style scoped>
-.topic { display: flex; flex-direction: column; height: 100%; min-height: 0; }
-header { padding: 16px 20px; border-bottom: 1px solid #e2e8f0; }
-.title-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-h2 { margin: 0; font-size: 20px; }
-.cx { color: #0369a1; font-size: 13px; font-weight: 600; }
-.concept { color: #334155; font-size: 14px; line-height: 1.65; margin: 8px 0; }
-.rw { color: #92400e; font-size: 13px; background: #fef3c7; padding: 7px 11px; border-radius: 7px; display: inline-block; margin: 4px 0 0; }
-.algos { margin-top: 12px; display: flex; gap: 7px; flex-wrap: wrap; }
-.algos button { padding: 6px 14px; cursor: pointer; border: 1px solid #cbd5e1; background: #fff; border-radius: 999px; font-size: 13px; }
-.algos button.on { background: #1f6feb; color: #fff; border-color: #1f6feb; }
-.split { flex: 1; display: grid; grid-template-columns: 1fr 1fr; min-height: 0; }
-.left, .right { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
-.left { border-right: 1px solid #e2e8f0; }
-.right { background: #f8fafc; }
-.pane-label { font-size: 11px; color: #94a3b8; padding: 6px 14px; background: #fff; border-bottom: 1px solid #eef2f7; letter-spacing: 0.04em; text-transform: uppercase; }
-.right .pane-label { background: #f8fafc; }
-.grow { flex: 1; min-height: 0; }
+.topic {
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.intro {
+  padding: 22px 28px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+h2 {
+  margin: 0;
+  font-size: 23px;
+}
+.badge {
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.badge.time {
+  color: var(--blue);
+  background: #1e3a5f33;
+}
+.badge.space {
+  color: var(--purple);
+  background: #3b2f5f33;
+}
+.lead {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.card-t {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.card p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+.concept {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin: 8px 0;
+}
+.rw {
+  color: var(--amber);
+  font-size: 13px;
+  background: #3a2e0f55;
+  border: 1px solid #5a4a1a;
+  padding: 7px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 4px 0 0;
+}
+.algos {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.algos-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-right: 2px;
+}
+.algos button {
+  padding: 6px 14px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text-dim);
+  border-radius: 999px;
+  font-size: 13px;
+}
+.algos button:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+.algos button.on {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 440px;
+  flex: none;
+  border-bottom: 1px solid var(--border);
+}
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+.left {
+  border-right: 1px solid var(--border);
+}
+.right {
+  background: var(--bg-elev);
+}
+.pane-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  padding: 8px 14px;
+  background: var(--bg-elev2);
+  border-bottom: 1px solid var(--border);
+}
+.pane-label .dim {
+  color: var(--text-muted);
+}
+.grow {
+  flex: 1;
+  min-height: 0;
+}
+.cote {
+  margin: 18px 28px 40px;
+  background: #1e2a1799;
+  border: 1px solid #3a5a2a;
+  border-left: 3px solid var(--green);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.cote-t {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.cote p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.75;
+}
 </style>

@@ -52,8 +52,8 @@ const fill = (id) => {
 <style scoped>
 .wrap { display: flex; flex-direction: column; height: 100%; width: 100%; align-items: center; }
 .g { width: 100%; max-width: 400px; flex: 1; }
-.info { font-size: 13px; color: #334155; padding: 4px 12px; text-align: center; }
-.info b { color: #0f172a; }
-.legend { display: flex; gap: 14px; padding: 10px; font-size: 12px; color: #475569; }
+.info { font-size: 13px; color: var(--text-dim); padding: 4px 12px; text-align: center; }
+.info b { color: var(--text); }
+.legend { display: flex; gap: 14px; padding: 10px; font-size: 12px; color: var(--text-dim); }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; }
 </style>

@@ -23,8 +23,12 @@ const emit = defineEmits(['play', 'next', 'prev', 'reset', 'seek', 'speed'])
       </select>
     </div>
     <input
-      class="bar" type="range" min="0" :max="Math.max(0, total - 1)"
-      :value="index" @input="emit('seek', +$event.target.value)"
+      class="bar"
+      type="range"
+      min="0"
+      :max="Math.max(0, total - 1)"
+      :value="index"
+      @input="emit('seek', +$event.target.value)"
     />
     <div class="status">
       <span class="pos">{{ index + 1 }} / {{ total }}</span>
@@ -34,14 +38,63 @@ const emit = defineEmits(['play', 'next', 'prev', 'reset', 'seek', 'speed'])
 </template>
 
 <style scoped>
-.ctrl { padding: 12px 16px; border-top: 1px solid #e2e8f0; background: #fff; display: flex; flex-direction: column; gap: 8px; }
-.buttons { display: flex; gap: 8px; align-items: center; }
-button { padding: 6px 12px; cursor: pointer; border: 1px solid #cbd5e1; background: #f8fafc; border-radius: 6px; font-size: 13px; }
-button:hover { background: #eef2f7; }
-button.play { background: #1f6feb; color: #fff; border-color: #1f6feb; min-width: 96px; }
-select { padding: 6px; border-radius: 6px; border: 1px solid #cbd5e1; }
-.bar { width: 100%; }
-.status { display: flex; gap: 12px; align-items: center; }
-.pos { font-variant-numeric: tabular-nums; color: #475569; font-size: 13px; flex: none; }
-.note { color: #0f172a; font-size: 13px; }
+.ctrl {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elev2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: none;
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+button {
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text-dim);
+  border-radius: 7px;
+  font-size: 13px;
+}
+button:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+button.play {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  min-width: 100px;
+}
+select {
+  padding: 6px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text);
+}
+.bar {
+  width: 100%;
+  accent-color: var(--accent);
+}
+.status {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.pos {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  font-size: 13px;
+  flex: none;
+}
+.note {
+  color: var(--text);
+  font-size: 13.5px;
+}
 </style>
