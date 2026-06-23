@@ -166,12 +166,12 @@ tbody tr:last-child td {
   border-bottom: none;
 }
 td :deep(code) {
-  background: var(--surface-2);
+  background: #0d1117;
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 1px 5px;
   font-family: 'D2Coding', 'Consolas', monospace;
   font-size: 12px;
-  color: #c2410c;
+  color: var(--green);
 }
 </style>

@@ -1,39 +1,39 @@
 :root {
-  /* 프로그래머스 라이트 크롬 */
-  --bg: #f4f6f8;
-  --surface: #ffffff;
-  --surface-2: #eef1f5;
-  --chrome: #263747;          /* 다크 슬레이트 상단바 */
-  --code-bg: #0d1117;         /* 코드 에디터(다크) */
+  /* 다크 크롬 (프로그래머스 레이아웃 유지) */
+  --bg: #0f141c;
+  --surface: #161c26;          /* 레일·설명·서브바 */
+  --surface-2: #1d2531;        /* 카드·스트립 */
+  --chrome: #0b0f16;           /* 상단바 */
+  --code-bg: #0d1117;          /* 코드 에디터 */
 
-  --border: #e2e6ec;
-  --border-soft: #eef1f5;
+  --border: #2a3340;
+  --border-soft: #222a36;
 
-  --text: #263747;
-  --text-dim: #5b6b7b;
-  --text-muted: #93a0ad;
+  --text: #e6edf6;
+  --text-dim: #a3b1c6;
+  --text-muted: #6b7c99;
 
-  --accent: #0078ff;          /* 프로그래머스 블루 */
-  --accent-soft: #0078ff14;
-  --accent-2: #2563eb;
+  --accent: #3d8bfd;           /* 블루 포인트 */
+  --accent-soft: #3d8bfd22;
+  --accent-2: #7c93ff;
   --slate-btn: #44576c;
 
-  --green: #16a34a;
-  --red: #ef4444;
-  --amber: #d97706;
-  --blue: #2563eb;
-  --purple: #7c3aed;
+  --green: #34d399;
+  --red: #f87171;
+  --amber: #fbbf24;
+  --blue: #60a5fa;
+  --purple: #a78bfa;
 
-  /* 시각화 타일(라이트) */
-  --tile: #f1f4f8;
-  --tile-border: #d6dde5;
-  --edge: #aab6c4;
+  /* 시각화 타일(다크) */
+  --tile: #1c2740;
+  --tile-border: #2c3a52;
+  --edge: #3a4a63;
 
-  /* 상태색 (라이트 배경용 tint) */
-  --hi-bg: #e3f0ff;   --hi-bd: #3b82f6;  --hi-tx: #1d4ed8;
-  --sw-bg: #ffe4e6;   --sw-bd: #ef4444;  --sw-tx: #b91c1c;
-  --ok-bg: #dcfce7;   --ok-bd: #16a34a;  --ok-tx: #15803d;
-  --am-bg: #fef3c7;   --am-bd: #d97706;  --am-tx: #b45309;
+  /* 상태색 (다크 배경용 tint) */
+  --hi-bg: #16243a;   --hi-bd: #3b82f6;  --hi-tx: #93c5fd;
+  --sw-bg: #3a1d22;   --sw-bd: #f87171;  --sw-tx: #fca5a5;
+  --ok-bg: #14301f;   --ok-bd: #34d399;  --ok-tx: #6ee7b7;
+  --am-bg: #3a2e0f;   --am-bd: #fbbf24;  --am-tx: #fcd34d;
 }
 
 * { box-sizing: border-box; }
@@ -48,5 +48,5 @@ body {
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #cfd6df; border-radius: 6px; }
-::-webkit-scrollbar-thumb:hover { background: #b6c0cc; }
+::-webkit-scrollbar-thumb { background: #2a3442; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #35414f; }

@@ -96,8 +96,8 @@ watch(steps, () => player.reset())
 .ttl { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
 h2 { margin: 0; font-size: 18px; }
 .badge { font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); }
-.badge.time { color: var(--blue); background: #eff4ff; }
-.badge.space { color: var(--purple); background: #f3effe; }
+.badge.time { color: var(--blue); background: #16243a; }
+.badge.space { color: var(--purple); background: #241a3a; }
 .tabs { display: flex; gap: 6px; }
 .tabs button {
   padding: 5px 13px; cursor: pointer; border: 1px solid var(--border);
@@ -117,7 +117,7 @@ h2 { margin: 0; font-size: 18px; }
 .body { font-size: 14px; line-height: 1.8; color: var(--text-dim); margin: 14px 0; }
 .rw { font-size: 13px; color: var(--text-dim); margin: 8px 0; }
 .rw code { background: var(--surface-2); border: 1px solid var(--border); border-radius: 5px; padding: 2px 7px; font-family: 'D2Coding', Consolas, monospace; font-size: 12px; color: var(--amber); }
-.cote { margin-top: 18px; background: #f0fbf3; border: 1px solid #c5ead0; border-left: 3px solid var(--green); border-radius: 10px; padding: 12px 14px; }
+.cote { margin-top: 18px; background: #12241a; border: 1px solid #234634; border-left: 3px solid var(--green); border-radius: 10px; padding: 12px 14px; }
 .cote-t { font-weight: 700; margin-bottom: 5px; }
 .cote p { margin: 0; font-size: 13.5px; color: var(--text-dim); line-height: 1.75; }
 
