@@ -31,12 +31,12 @@ const cls = (i) => {
 .col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .cell {
   width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
-  background: #1c2740; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--tile); border: 1.5px solid var(--tile-border); border-radius: 8px;
   color: var(--text); font-weight: 600; font-size: 15px; transition: all 0.25s;
 }
-.cell.hi { background: #1e3a5f; border-color: var(--blue); color: var(--blue); }
-.cell.shift { background: #3a2e0f; border-color: var(--amber); color: var(--amber); }
-.cell.inserted { background: #16331f; border-color: var(--green); color: var(--green); }
+.cell.hi { background: var(--hi-bg); border-color: var(--hi-bd); color: var(--hi-tx); }
+.cell.shift { background: var(--am-bg); border-color: var(--am-bd); color: var(--am-tx); }
+.cell.inserted { background: var(--ok-bg); border-color: var(--ok-bd); color: var(--ok-tx); }
 .idx { font-size: 11px; color: var(--text-muted); }
 .legend { display: flex; gap: 16px; font-size: 12px; color: var(--text-dim); }
 .legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: middle; }

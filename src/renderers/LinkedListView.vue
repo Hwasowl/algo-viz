@@ -31,12 +31,13 @@ const cls = (i) => {
   display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px;
   overflow: hidden; transition: all 0.25s;
 }
-.val { padding: 12px 14px; background: #1c2740; color: var(--text); font-weight: 700; font-size: 15px; }
-.ptr { padding: 12px 10px; background: #131d33; color: var(--text-muted); font-size: 11px; }
-.node.hi { border-color: var(--amber); box-shadow: 0 0 0 2px #fbbf2455; }
-.node.hi .val { color: var(--amber); }
-.node.inserted { border-color: var(--green); box-shadow: 0 0 0 2px #34d39955; }
-.node.inserted .val { color: var(--green); }
+.val { padding: 12px 14px; background: var(--tile); color: var(--text); font-weight: 700; font-size: 15px; }
+.ptr { padding: 12px 10px; background: var(--surface-2); color: var(--text-muted); font-size: 11px; }
+.node { background: var(--surface); }
+.node.hi { border-color: var(--am-bd); box-shadow: 0 0 0 2px #d9770633; }
+.node.hi .val { color: var(--am-tx); background: var(--am-bg); }
+.node.inserted { border-color: var(--ok-bd); box-shadow: 0 0 0 2px #16a34a33; }
+.node.inserted .val { color: var(--ok-tx); background: var(--ok-bg); }
 .arrow { color: var(--accent); font-size: 20px; }
 .nul { color: var(--text-muted); font-size: 13px; }
 .legend { font-size: 12.5px; color: var(--text-dim); }

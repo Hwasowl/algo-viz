@@ -31,7 +31,7 @@ const fmt = (n) => (n >= 10000 ? n.toExponential(0).replace('e+', '×10^') : n.t
 .rows { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center; }
 .row { display: grid; grid-template-columns: 84px 1fr 96px; align-items: center; gap: 12px; }
 .lbl { font-size: 13px; font-weight: 700; font-family: monospace; }
-.track { height: 18px; background: #0d1526; border-radius: 5px; overflow: hidden; }
+.track { height: 18px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
 .fill { height: 100%; border-radius: 5px; transition: width 0.35s ease; min-width: 2px; }
 .ops { font-size: 12px; color: var(--text-dim); text-align: right; font-variant-numeric: tabular-nums; }
 .hint { font-size: 12px; color: var(--text-muted); }

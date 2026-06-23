@@ -1,45 +1,35 @@
 <script setup>
-import { ref } from 'vue'
-import { topics, weeks, topicsByWeek } from './topics/index.js'
-import TopicView from './components/TopicView.vue'
+import { ref, computed } from 'vue'
+import { topics, weeks } from './topics/index.js'
+import SideRail from './components/SideRail.vue'
+import ProblemView from './components/ProblemView.vue'
 import ArticleView from './components/ArticleView.vue'
 
 const selected = ref(topics[0])
+const railOpen = ref(true)
+
+const weekTitle = computed(() => weeks.find((w) => w.week === selected.value.week)?.title || '')
 </script>
 
 <template>
-  <div class="app">
-    <nav>
-      <div class="brand">
-        <span class="logo">🧮</span>
-        <div>
-          <div class="bt">코테 알고리즘 시각화</div>
-          <div class="bs">좌측 코드 ↔ 우측 동작, 한 스텝씩</div>
-        </div>
-      </div>
+  <div class="app" :class="{ 'rail-closed': !railOpen }">
+    <header class="topbar">
+      <button class="ham" @click="railOpen = !railOpen" :title="railOpen ? '목록 접기' : '목록 펼치기'">☰</button>
+      <span class="logo">🧮</span>
+      <span class="brand">코테 알고리즘 시각화</span>
+      <span class="sep">›</span>
+      <span class="crumb">{{ weekTitle }}</span>
+      <span class="sep">›</span>
+      <span class="crumb cur">{{ selected.title }}</span>
+      <div class="spacer"></div>
+      <a class="ghlink" href="https://github.com/Hwasowl/algo-viz" target="_blank" rel="noopener">GitHub</a>
+    </header>
 
-      <div v-for="w in weeks" :key="w.week" class="wk">
-        <div class="wk-t">{{ w.title }}</div>
-        <button
-          v-for="t in topicsByWeek(w.week)"
-          :key="t.id"
-          :class="{ on: t.id === selected.id }"
-          @click="selected = t"
-        >
-          <span class="dot" :class="t.article ? 'doc' : 'viz'"></span>
-          {{ t.title }}
-        </button>
-      </div>
-
-      <p class="cr">
-        ⓒ 딩코딩코 원작 커리큘럼 기반<br />
-        개발 입문자용 Java 재서술
-      </p>
-    </nav>
+    <SideRail v-show="railOpen" :selected="selected" @select="(t) => (selected = t)" />
 
     <main>
       <ArticleView v-if="selected.article" :topic="selected" :key="selected.id" />
-      <TopicView v-else :topic="selected" :key="selected.id" />
+      <ProblemView v-else :topic="selected" :key="selected.id" />
     </main>
   </div>
 </template>
@@ -47,88 +37,56 @@ const selected = ref(topics[0])
 <style scoped>
 .app {
   display: grid;
-  grid-template-columns: 268px 1fr;
+  grid-template-columns: 256px 1fr;
+  grid-template-rows: 48px 1fr;
+  grid-template-areas:
+    'top top'
+    'rail main';
   height: 100vh;
 }
-nav {
-  background: #080e1a;
-  border-right: 1px solid var(--border);
-  padding: 18px 14px;
-  overflow: auto;
+.app.rail-closed {
+  grid-template-columns: 0 1fr;
 }
-.brand {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 14px;
-  padding: 0 4px;
-}
-.logo {
-  font-size: 26px;
-}
-.bt {
-  font-size: 15px;
-  font-weight: 700;
-}
-.bs {
-  font-size: 11.5px;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-.wk-t {
-  color: var(--text-muted);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  margin: 16px 6px 6px;
-  text-transform: uppercase;
-}
-nav button {
+.topbar {
+  grid-area: top;
+  background: var(--chrome);
+  color: #dfe6ee;
   display: flex;
   align-items: center;
-  gap: 8px;
-  width: 100%;
-  text-align: left;
+  gap: 9px;
+  padding: 0 14px;
+  font-size: 13px;
+}
+.ham {
   background: none;
   border: none;
-  color: var(--text-dim);
-  padding: 8px 10px;
-  border-radius: 8px;
+  color: #aebccb;
+  font-size: 17px;
   cursor: pointer;
-  font-size: 13.5px;
+  padding: 4px 8px;
+  border-radius: 6px;
 }
-nav button:hover {
-  background: var(--bg-elev);
-  color: var(--text);
+.ham:hover { background: #ffffff14; color: #fff; }
+.logo { font-size: 17px; }
+.brand { font-weight: 700; color: #fff; }
+.sep { color: #6b7c8d; }
+.crumb { color: #aebccb; }
+.crumb.cur { color: #fff; font-weight: 600; }
+.spacer { flex: 1; }
+.ghlink {
+  color: #aebccb;
+  text-decoration: none;
+  font-size: 12.5px;
+  padding: 4px 10px;
+  border: 1px solid #ffffff22;
+  border-radius: 6px;
 }
-nav button.on {
-  background: var(--accent);
-  color: #fff;
-}
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  flex: none;
-}
-.dot.viz {
-  background: var(--green);
-}
-.dot.doc {
-  background: var(--amber);
-}
-nav button.on .dot {
-  background: #fff;
-}
-.cr {
-  color: var(--text-muted);
-  font-size: 11px;
-  margin: 26px 6px 0;
-  line-height: 1.6;
-}
+.ghlink:hover { background: #ffffff14; color: #fff; }
 main {
+  grid-area: main;
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+  background: var(--bg);
 }
 </style>

@@ -28,7 +28,7 @@ defineProps({ state: { type: Object, required: true } })
 .items { display: flex; gap: 6px; }
 .item {
   width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
-  background: #1c2740; border: 1px solid var(--accent); border-radius: 8px; color: var(--text); font-weight: 700; font-size: 16px;
+  background: var(--hi-bg); border: 1.5px solid var(--accent); border-radius: 8px; color: var(--hi-tx); font-weight: 700; font-size: 16px;
 }
 .cap { font-size: 11px; color: var(--text-muted); }
 .empty { color: var(--text-muted); font-size: 13px; }

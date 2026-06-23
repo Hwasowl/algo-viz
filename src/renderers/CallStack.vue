@@ -32,13 +32,13 @@ const reversed = computed(() => [...(props.state.frames || [])].reverse())
 .stack { display: flex; flex-direction: column; justify-content: flex-end; flex: 1; gap: 5px; }
 .top-label, .base { color: #94a3b8; font-size: 11px; text-align: center; }
 .frame {
-  background: #1e293b; color: #e2e8f0; padding: 9px 14px; border-radius: 7px;
+  background: var(--tile); color: var(--text); border: 1.5px solid var(--tile-border); padding: 9px 14px; border-radius: 7px;
   font-family: 'Consolas', monospace; font-size: 14px;
   display: flex; justify-content: space-between; align-items: center;
 }
-.frame.done { background: #166534; }
-.ret { color: #86efac; font-weight: 600; }
-.frame.done .ret { color: #bbf7d0; }
+.frame.done { background: var(--ok-bg); border-color: var(--ok-bd); color: var(--ok-tx); }
+.ret { color: var(--accent); font-weight: 700; }
+.frame.done .ret { color: var(--ok-tx); }
 .empty { color: #94a3b8; text-align: center; padding: 20px; }
 .frame-enter-active, .frame-leave-active { transition: all 0.2s ease; }
 .frame-enter-from, .frame-leave-to { opacity: 0; transform: translateY(8px); }

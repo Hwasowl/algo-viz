@@ -30,7 +30,7 @@ const fill = (id) => {
         :key="'e' + i"
         :x1="pos[e[0]].x" :y1="pos[e[0]].y"
         :x2="pos[e[1]].x" :y2="pos[e[1]].y"
-        stroke="#cbd5e1" stroke-width="2"
+        stroke="#aab6c4" stroke-width="2"
       />
       <g v-for="id in state.nodes" :key="id">
         <circle :cx="pos[id].x" :cy="pos[id].y" r="21" :fill="fill(id)" />

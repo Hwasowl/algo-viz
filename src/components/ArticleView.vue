@@ -64,6 +64,7 @@ defineProps({ topic: { type: Object, required: true } })
   height: 100%;
   overflow: auto;
   padding: 28px 40px 80px;
+  background: var(--surface);
 }
 .head {
   max-width: 860px;
@@ -116,7 +117,7 @@ h2 {
   border-radius: 12px;
   padding: 14px 16px;
   border: 1px solid var(--border);
-  background: var(--bg-elev);
+  background: var(--surface-2);
 }
 .callout.info {
   border-left: 3px solid var(--accent);
@@ -157,7 +158,7 @@ td {
   color: var(--text-dim);
 }
 th {
-  background: var(--bg-elev2);
+  background: var(--surface-2);
   color: var(--text);
   font-weight: 600;
 }
@@ -165,12 +166,12 @@ tbody tr:last-child td {
   border-bottom: none;
 }
 td :deep(code) {
-  background: #0d1117;
+  background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 1px 5px;
   font-family: 'D2Coding', 'Consolas', monospace;
   font-size: 12px;
-  color: var(--green);
+  color: #c2410c;
 }
 </style>

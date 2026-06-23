@@ -37,9 +37,9 @@ const chars = computed(() => (props.state.input || '').split(''))
 .input { display: flex; gap: 4px; }
 .ch {
   width: 30px; height: 34px; display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--border); border-radius: 6px; font-family: monospace; font-size: 16px; color: var(--text-dim);
+  border: 1px solid var(--tile-border); border-radius: 6px; font-family: monospace; font-size: 16px; color: var(--text-dim); background: var(--surface);
 }
-.ch.on { border-color: var(--amber); color: var(--amber); background: #3a2e0f; }
+.ch.on { border-color: var(--am-bd); color: var(--am-tx); background: var(--am-bg); }
 .ch.done { color: var(--text-muted); opacity: 0.5; }
 .stackbox {
   display: flex; flex-direction: column; align-items: center; gap: 4px;
@@ -47,8 +47,8 @@ const chars = computed(() => (props.state.input || '').split(''))
 }
 .top-label { font-size: 11px; color: var(--text-muted); }
 .item {
-  width: 86px; padding: 10px; text-align: center; background: #1c2740; border: 1px solid var(--accent);
-  border-radius: 6px; color: var(--text); font-weight: 700; font-family: monospace;
+  width: 86px; padding: 10px; text-align: center; background: var(--hi-bg); border: 1.5px solid var(--accent);
+  border-radius: 6px; color: var(--hi-tx); font-weight: 700; font-family: monospace;
 }
 .empty { color: var(--text-muted); padding: 14px; font-size: 13px; }
 .floor { font-size: 11px; color: var(--text-muted); }

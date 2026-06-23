@@ -33,7 +33,7 @@ const color = (i) => {
 <template>
   <div class="wrap">
     <svg :viewBox="`0 0 ${layout.W} ${layout.H}`" class="g">
-      <line v-for="(e, i) in layout.edges" :key="'e' + i" :x1="e[0].x" :y1="e[0].y" :x2="e[1].x" :y2="e[1].y" stroke="#2a3a59" stroke-width="2" />
+      <line v-for="(e, i) in layout.edges" :key="'e' + i" :x1="e[0].x" :y1="e[0].y" :x2="e[1].x" :y2="e[1].y" stroke="#aab6c4" stroke-width="2" />
       <g v-for="n in layout.nodes" :key="n.i">
         <circle :cx="n.x" :cy="n.y" r="18" :fill="color(n.i)" />
         <text :x="n.x" :y="n.y + 5" text-anchor="middle" fill="#0b1220" font-size="14" font-weight="700">{{ n.v }}</text>
@@ -56,6 +56,6 @@ const color = (i) => {
 .cells { display: flex; gap: 4px; }
 .cell {
   width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
-  background: #131d33; border: 1.5px solid var(--border); border-radius: 6px; font-weight: 700; font-size: 13px; font-family: monospace;
+  background: var(--tile); border: 1.5px solid var(--tile-border); border-radius: 6px; font-weight: 700; font-size: 13px; font-family: monospace;
 }
 </style>

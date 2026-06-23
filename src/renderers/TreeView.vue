@@ -46,7 +46,7 @@ const fill = (id) => {
 <template>
   <div class="wrap">
     <svg :viewBox="`0 0 ${layout.W} ${layout.H}`" class="g">
-      <line v-for="(e, i) in layout.edges" :key="'e' + i" :x1="e[0].x" :y1="e[0].y" :x2="e[1].x" :y2="e[1].y" stroke="#2a3a59" stroke-width="2" />
+      <line v-for="(e, i) in layout.edges" :key="'e' + i" :x1="e[0].x" :y1="e[0].y" :x2="e[1].x" :y2="e[1].y" stroke="#aab6c4" stroke-width="2" />
       <g v-for="(c, id) in layout.coords" :key="id">
         <circle :cx="c.x" :cy="c.y" r="19" :fill="fill(id)" />
         <text :x="c.x" :y="c.y + 5" text-anchor="middle" fill="#0b1220" font-size="14" font-weight="700">{{ state.nodes[id].val }}</text>

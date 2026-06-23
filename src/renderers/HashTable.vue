@@ -29,12 +29,12 @@ const props = defineProps({ state: { type: Object, required: true } })
 .calc .hl { color: var(--amber); }
 .table { display: flex; flex-direction: column; gap: 5px; }
 .bucket { display: flex; align-items: center; gap: 10px; padding: 4px; border-radius: 6px; }
-.bucket.active { background: #3a2e0f55; outline: 1px solid var(--amber); }
+.bucket.active { background: var(--am-bg); outline: 1px solid var(--am-bd); }
 .bi { width: 34px; font-family: monospace; color: var(--text-muted); font-size: 13px; }
 .chain { display: flex; align-items: center; gap: 6px; min-height: 32px; }
 .node {
-  background: #1c2740; border: 1px solid var(--accent); border-radius: 6px; padding: 6px 12px;
-  color: var(--text); font-weight: 700; font-family: monospace; font-size: 14px;
+  background: var(--hi-bg); border: 1.5px solid var(--accent); border-radius: 6px; padding: 6px 12px;
+  color: var(--hi-tx); font-weight: 700; font-family: monospace; font-size: 14px;
 }
 .link { color: var(--accent); }
 .nul { color: var(--text-muted); font-size: 12px; }

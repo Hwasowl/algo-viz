@@ -32,12 +32,12 @@ const cls = (i) => {
 .col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .cell {
   width: 46px; height: 46px; display: flex; align-items: center; justify-content: center;
-  background: #131d33; border: 1.5px solid var(--border); border-radius: 8px;
+  background: var(--tile); border: 1.5px solid var(--tile-border); border-radius: 8px;
   color: var(--text-muted); font-weight: 700; font-size: 15px; transition: all 0.25s;
 }
-.cell.filled { background: #16331f; border-color: #2e5a3a; color: var(--green); }
-.cell.dep { background: #1e3a5f; border-color: var(--blue); color: var(--blue); }
-.cell.cur { background: #3a2e0f; border-color: var(--amber); color: var(--amber); transform: scale(1.08); }
+.cell.filled { background: var(--ok-bg); border-color: var(--ok-bd); color: var(--ok-tx); }
+.cell.dep { background: var(--hi-bg); border-color: var(--hi-bd); color: var(--hi-tx); }
+.cell.cur { background: var(--am-bg); border-color: var(--am-bd); color: var(--am-tx); transform: scale(1.08); }
 .idx { font-size: 10.5px; color: var(--text-muted); font-family: monospace; }
 .legend { display: flex; gap: 16px; font-size: 12px; color: var(--text-dim); }
 .legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: middle; }
